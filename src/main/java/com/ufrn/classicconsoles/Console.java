@@ -1,20 +1,38 @@
 package com.ufrn.classicconsoles;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "consoles") // this class represents a mongodb document!
 public class Console {
+    @Id
+    private String id;
     private String name;
     private String generation;
     private String image;
     private int year;
     private String bestSellingGame;
-    private String cpu;
+    private int ranking;
 
-    public Console(String name, String generation, String image, int year, String bestSellingGame, String cpu) {
+    public Console() {
+        // it will be used by spring
+    }
+
+    public Console(String name, String generation, String image, int year, String bestSellingGame, int ranking) {
         this.name = name;
         this.generation = generation;
         this.image = image;
         this.year = year;
         this.bestSellingGame = bestSellingGame;
-        this.cpu = cpu;
+        this.ranking = ranking;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getRanking() {
+        return ranking;
     }
 
     public String getName() {
@@ -37,7 +55,4 @@ public class Console {
         return bestSellingGame;
     }
 
-    public String getCpu() {
-        return cpu;
-    }
 }
